@@ -9,7 +9,7 @@ const CreatePost = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState({
     name: '',
-    propmt: '',
+    prompt: '',
     photo: '',
   });
   const [generatingImg, setGeneratingImg] = useState(false);
@@ -24,11 +24,12 @@ const CreatePost = () => {
   }
 
   const handleChange = (e) => {
-
+    setForm( {...form, [e.target.name]: e.target.value })
   }
 
   const handleSurpriseMe = () => {
-
+    const randomPrompt = getRandomPrompt(form.prompt);
+    setForm({ ...form, prompt: randomPrompt })
   }
 
   return (
@@ -54,9 +55,9 @@ const CreatePost = () => {
           <FormField
             labelName='prompt'
             type='text'
-            name='propmt'
+            name='prompt'
             placeholder='The long-lost Star Wars 1990 Japanese Anime'
-            value={form.propmt}
+            value={form.prompt}
             handleChange={handleChange}
             isSurpriseMe
             handleSurpriseMe={handleSurpriseMe}
